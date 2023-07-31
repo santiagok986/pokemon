@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@mdi/js": "^7.2.96",
     "apexcharts": "^3.31.0",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",

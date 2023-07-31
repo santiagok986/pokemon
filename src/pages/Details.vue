@@ -1,8 +1,12 @@
 <script setup>
 import { useRoute } from "vue-router";
+import { reactive, toRefs, computed, ref, onMounted, watch } from "vue";
 import BarChart from "../components/BarChart.vue";
 import RadarChart from "../components/RadarChart.vue";
-import { reactive, toRefs, computed, ref, onMounted, watch } from "vue";
+import Icon from "../components/Icon.vue"
+import { mdiPoll } from '@mdi/js';
+import { mdiHexagon } from '@mdi/js';
+
 const state = reactive({
   pokemon: null,
   stats: computed(() => filterStats()),
@@ -83,13 +87,16 @@ const changeChart = () => {
             />
           </div>
           <div class="flex-1">
-            <button @click="changeChart()">
+            <button @click="changeChart()" class="flex justify-center items-center">
+              <Icon :iconPath="!isBarChart ? mdiPoll : mdiHexagon"></Icon>
               {{ isBarChart ? "Radar" : "Bar" }}
             </button>
             <!-- <bar-chart :stats="stats"/> -->
             <component
               :is="isBarChart ? BarChart : RadarChart"
               :stats="stats"
+              :name="pokemon.name"
+              :key="pokemon.id"
             />
           </div>
         </div>
